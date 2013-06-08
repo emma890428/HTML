@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<body>
+
+		<canvas id="myLine" width="200" height="100" style="border:1px solid #d3d3d3;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+		<canvas id="myCircle" width="200" height="100" style="border:1px solid #d3d3d3;">
+		Your browser does not support the HTML5 canvas tag.</canvas>
+		<canvas id = "myText" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<canvas id = "myLGrad" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<canvas id = "myRGrad" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<br/>
+		<img id = "srcImg" src = "../POSTER_smr.jpg" alt="Display Error"/ style = "display:none;">
+		<canvas id = "myImg" width ="200" height = "210" style = "border:1px solid #CCCCCC">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<canvas id = "myShadow" width = "200" height = "100" style = "border:1px solid #CCCCCC; position: absolute;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<canvas id = "myPattern" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+
+		<script>
+
+			var cLine=document.getElementById("myLine");
+			var ctxLine=cLine.getContext("2d");
+			// begin to draw the 1st line
+			ctxLine.beginPath();
+			ctxLine.strokeStyle="ff0000";
+			ctxLine.lineWidth = "3";
+			ctxLine.lineCap = "square";
+			ctxLine.moveTo(10,10);
+			ctxLine.lineTo(190,90);
+			ctxLine.stroke();
+			// begin to draw the 2nd line
+			ctxLine.beginPath();
+			ctxLine.lineWidth = "10";
+			ctxLine.lineCap = "round";
+			ctxLine.moveTo(10,25);
+			ctxLine.lineTo(155,90);
+			ctxLine.stroke();
+
+			var cCircle = document.getElementById("myCircle");
+			var ctxCircle = cCircle.getContext("2d");
+			ctxCircle.beginPath();
+			ctxCircle.arc(100,50,40,0,2*Math.PI);
+			ctxCircle.stroke();
+
+			var cText = document.getElementById("myText");
+			var ctxText = cText.getContext("2d");
+			ctxText.font = "30px Arial";
+			ctxText.fillText("Hello World",20,40);
+			ctxText.strokeText("Hello World",20,80);
+
+			var cLGrad = document.getElementById("myLGrad");
+			var ctxLGrad = cLGrad.getContext("2d");
+			var lGrd = ctxLGrad.createLinearGradient(0,0,200,0);
+			lGrd.addColorStop(0, "red");
+			lGrd.addColorStop(1, "white");
+			ctxLGrad.fillStyle = lGrd;
+			ctxLGrad.fillRect(10,10,180,80);
+
+			var cRGrad = document.getElementById("myRGrad");
+			var ctxRGrad = cRGrad.getContext("2d");
+			var rGrd = ctxRGrad.createRadialGradient(100,50,10,100,50,100);
+			rGrd.addColorStop(0,"red");
+			rGrd.addColorStop(1,"white");
+			ctxRGrad.fillStyle = rGrd;
+			ctxRGrad.fillRect(10,10,180,80);
+
+			var cImg = document.getElementById("myImg");
+			var ctxImg = cImg.getContext("2d");
+			var srcImg = document.getElementById("srcImg");
+
+			var cShadow = document.getElementById("myShadow");
+			var ctxShadow = cShadow.getContext("2d");
+			ctxShadow.shadowBlur = "20";
+			ctxShadow.shadowOffsetX = "10";
+			ctxShadow.shadowOffsetY = "10";
+			ctxShadow.shadowColor = "black";
+			ctxShadow.fillStyle = "red";
+			ctxShadow.fillRect(10,10,170,70);
+
+			var cPattern = document.getElementById("myPattern");
+			var ctxPattern = cPattern.getContext("2d");
+			srcImg.onload = function() {
+				ctxImg.drawImage(srcImg,10,10);
+				var pat = ctxPattern.createPattern(srcImg,"repeat");
+				ctxPattern.rect(0,0,200,100);
+				ctxPattern.fillStyle = pat;
+				ctxPattern.fill();
+			};
+
+		</script>
+
+	</body>
+</html>
