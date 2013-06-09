@@ -32,6 +32,9 @@
 		<canvas id = "myCurve" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
+		<canvas id = "mySclRtt" width = "200" height = "100" style = "border:1px solid #CCCCCC; position: absolute;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
 
 		<script>
 
@@ -131,7 +134,18 @@
 			ctxCurve.bezierCurveTo(20,100,180,100,180,40);
 			ctxCurve.stroke();
 
-
+			var cSclRtt = document.getElementById("mySclRtt");
+			var ctxSclRtt = cSclRtt.getContext("2d");
+			// draw a small rectangle
+			ctxSclRtt.beginPath();
+			ctxSclRtt.rect(10,10,30,15);
+			ctxSclRtt.stroke();
+			// scale to 200% and rotate 45 degrees
+			ctxSclRtt.beginPath();
+			ctxSclRtt.scale(2,2);
+			ctxSclRtt.rotate(45*Math.PI/180);
+			ctxSclRtt.rect(30,-10,30,15);
+			ctxSclRtt.stroke();
 
 		</script>
 
