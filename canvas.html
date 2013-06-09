@@ -26,6 +26,12 @@
 		<canvas id = "myPattern" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
+		<canvas id = "myClip" width = "200" height = "100" style = "border:1px solid #CCCCCC; position: absolute;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+		<canvas id = "myCurve" width = "200" height = "100" style = "border:1px solid #CCCCCC;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
 
 		<script>
 
@@ -51,8 +57,14 @@
 
 			var cCircle = document.getElementById("myCircle");
 			var ctxCircle = cCircle.getContext("2d");
+			//draw a circle
 			ctxCircle.beginPath();
 			ctxCircle.arc(100,50,40,0,2*Math.PI);
+			ctxCircle.stroke();
+			// draw the arc between two tangents
+			ctxCircle.beginPath();
+			ctxCircle.moveTo(10,10);
+			ctxCircle.arcTo(120,10,10,60,20);
 			ctxCircle.stroke();
 
 			var cText = document.getElementById("myText");
@@ -99,6 +111,27 @@
 				ctxPattern.fillStyle = pat;
 				ctxPattern.fill();
 			};
+
+			var cClip = document.getElementById("myClip");
+			var ctxClip = cClip.getContext("2d");
+			ctxClip.rect(20,20,160,60);
+			ctxClip.stroke();
+			ctxClip.clip();
+			ctxClip.fillStyle = "red";
+			ctxClip.fillRect(0,0,150,60);
+
+			var cCurve = document.getElementById("myCurve");
+			var ctxCurve = cCurve.getContext("2d");
+			ctxCurve.beginPath();
+			ctxCurve.moveTo(20,20);
+			ctxCurve.quadraticCurveTo(20,80,180,20);
+			ctxCurve.stroke();
+			ctxCurve.beginPath();
+			ctxCurve.moveTo(20,40);
+			ctxCurve.bezierCurveTo(20,100,180,100,180,40);
+			ctxCurve.stroke();
+
+
 
 		</script>
 
