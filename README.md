@@ -1,4 +1,4 @@
-HTML5
+HTML
 =====
 
-HTML5 exercises
+HTML exercises
